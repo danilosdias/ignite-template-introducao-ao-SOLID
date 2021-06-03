@@ -29,6 +29,8 @@ class UsersRepository implements IUsersRepository {
     });
 
     this.users.push(user);
+
+    return user;
   }
 
   findById(id: string): User | undefined {
@@ -42,16 +44,19 @@ class UsersRepository implements IUsersRepository {
   }
 
   turnAdmin(receivedUser: User): User {
-    const indexUser = this.users.findIndex((user) => user.id === receivedUser.id);
+    const updatedUser = {
+      ...receivedUser,
+      admin: true,
+      updated_at: new Date(),
+    };
 
-    const user = receivedUser;
+    const indexUser = this.users.findIndex(
+      (user) => user.id === receivedUser.id
+    );
 
-    user.admin = true;
-    user.updated_at = new Date();
+    this.users[indexUser] = updatedUser;
 
-    this.users[indexUser] = user;
-
-    return user
+    return updatedUser;
   }
 
   list(): User[] {
