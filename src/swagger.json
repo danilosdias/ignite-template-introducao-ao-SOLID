@@ -1,0 +1,49 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Template Solid Documentatio",
+    "description": "This is an API Solid",
+    "version": "1.0.0",
+    "contact": {
+      "email": "gdfdanilo1@icloud.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "sumarry": "Cria usuário",
+        "description": "Cria um novo usuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "exemple": {
+                  "name": "user name sample",
+                  "email": "email sample"
+                }
+              }
+            }
+          }
+        },
+        "response": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Email alreandy exists"
+          }
+        }
+      }
+    }
+  }
+}
